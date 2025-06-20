@@ -5,11 +5,7 @@ import io
 import base64
 import numpy as np
 
-
-
 MAX_SIZE = (300, 300)
-
-
 
 def apply_magical_filter(image, filter_type):
     if filter_type == "Invert Colors":
@@ -39,15 +35,11 @@ def removebg(img_file):
         st.error(f"❌ Background removal error: {e}")
         return None
 
-
-
 def get_image_download_link(image, filename="output.png"):
     buffer = io.BytesIO()
     image.save(buffer, format="PNG")
     b64 = base64.b64encode(buffer.getvalue()).decode()
     return f'<a href="data:file/png;base64,{b64}" download="{filename}">📥 Download Output Image</a>'
-
-
 
 def main():
     st.set_page_config(page_title="🧙 Magical Image Editor", page_icon="✨", layout="wide")
@@ -98,8 +90,7 @@ Magical Image Editor is a simple tool to remove image backgrounds and apply fun 
                 ])
                 filtered_img = apply_magical_filter(result, filter_type)
                 st.image(filtered_img, caption=f"{filter_type} Effect", width=MAX_SIZE[0])
-
-
+                
 if __name__ == "__main__":
     main()
 
